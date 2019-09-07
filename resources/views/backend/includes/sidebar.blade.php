@@ -4,7 +4,7 @@
 
                     <!-- User box -->
                     <div class="user-box text-center">
-                        <img src="{{asset('public/images/'.Auth::user()->thumbnail)}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-lg">
+                        <img src="{{asset('public/images/user/'.Auth::user()->thumbnail)}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-lg">
                         <div class="dropdown">
                             <a href="#" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown">{{uppercase(Auth::user()->name)}}</a>
                             <div class="dropdown-menu user-pro-dropdown">
@@ -76,6 +76,24 @@
                                 </a>
                             </li>
 
+                                @can('view-post', User::class)
+                                {{-- expr --}}
+                            
+                             <li>
+                                <a href="javascript: void(0);">
+                                    <i class="ti-user"></i>
+                                    <span> Post</span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{route('post.index')}}">View</a></li>
+                                    <li><a href="{{route('post.create')}}">Create</a></li>
+                                    {{-- <li><a href="ui-draggable-cards.html">Draggable Cards</a></ --}}
+                                </ul>
+                            </li>
+                            @endcan
+
+
                                 @can('view-user', User::class)
                                 {{-- expr --}}
                             
@@ -88,6 +106,11 @@
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{route('user.index')}}">View</a></li>
                                     <li><a href="{{route('user.create')}}">Create</a></li>
+                                    
+                                    @can('view-subscriber', Model::class)
+                                        
+                                    <li><a href="{{route('subscriber.index')}}">Subscribers</a></li>
+                                      @endcan
                                     {{-- <li><a href="ui-draggable-cards.html">Draggable Cards</a></ --}}
                                 </ul>
                             </li>

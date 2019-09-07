@@ -1,6 +1,8 @@
 <?php
 
 // use Illuminate\Auth\Middleware\Auth;
+use App\Notifications\PostNotification;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -21,8 +23,14 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::get('/testing',function(){
-	return view('frontend.index');
+	$user = User::find(1);
+	$user->notify(new PostNotification);
+	dd('cool');
+	
 });
+
+
+Route::post('upload_image','PostController@uploadImage')->name('upload');
 
 // frontend routes
 
@@ -31,6 +39,12 @@ Route::get('/testing',function(){
 // frontend routes end here
 
 // admin routes
+
+// subscriber route
+	
+Route::resource('subscriber','SubscriberController');
+
+// subscriber route end here
 Route::group(['middleware' => 'auth'],function(){
 
 
@@ -38,6 +52,8 @@ Route::group(['middleware' => 'auth'],function(){
 
 	// custom permission route
 	Route::get('permission/filter','PermissionController@filter')->name('permission.filter');
+	Route::get('articles')->name('articles');
+	Route::get('/approve_post/{post}','PostController@approved')->name('approve.post');
 
 	// custom permission route end here
 	Route::resource('user','UserController');
@@ -45,6 +61,8 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::resource('tag','TagController');
 	Route::resource('category','CategoryController');
 	Route::resource('permission','PermissionController');
+	Route::resource('post','PostController');
+	// Route::resource('subscriber','SubscriberController');
 });
 // admin routes end here
 

@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(6);
+        $users = User::where('id' ,'!=',1)->paginate(10);
         return view('backend.user.index',compact('users'));
     }
 

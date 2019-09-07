@@ -52,10 +52,15 @@
 									</ul>
 									<!-- End of .submenu -->
 								</li>
-								<li><a href="business.html">Business</a></li>
-								<li><a href="lifestyle.html">Lifestyle</a></li>
-								<li><a href="technology.html">Technology</a></li>
-								<li><a href="sports.html">Sports</a></li>
+
+								{{-- category dynamic --}}
+								@if (isset($category))
+									@foreach ($category as $cat)
+								     <li><a href="{{route('articles',['category' => $cat->slug])}}">{{$cat->name}}</a></li>
+								    @endforeach	
+								@endif
+
+								{{-- category dynamic end here --}}
 								<li class="has-dropdown">
 									<a href="#">Pages</a>
 									<ul class="submenu">

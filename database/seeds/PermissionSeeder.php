@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
             // dropdown view permissions
             
             ['name' => 'view-essentials'],
+            ['name' => 'approve-post'],
 
 
 
@@ -33,7 +34,7 @@ class PermissionSeeder extends Seeder
     		['name' => 'view-products'],
     		['name' =>'create-product'],
 
-    		['name' => 'create-post'],
+    		
 
     
             ['name' => 'view-role'],
@@ -57,6 +58,15 @@ class PermissionSeeder extends Seeder
             ['name' => 'create-tag'],
             ['name' => 'update-tag'],
             ['name' => 'delete-tag'],
+
+            ['name' => 'view-post'],
+            ['name' => 'create-post'],
+            ['name' => 'update-post'],
+            ['name' => 'delete-post'],
+
+            ['name' => 'view-subscriber'],
+            ['name' => 'delete-subscriber'],
+
     		
 
 

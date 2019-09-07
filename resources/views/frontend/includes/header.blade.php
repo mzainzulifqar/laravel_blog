@@ -63,7 +63,7 @@
 	<!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-	<div class="subscribe-popup">
+	<div class="subscribe-popup" id="subscribe-popup">
 		<div class="subscribe-popup-inner">
 			<div class="close-popup">
 				<i class="fal fa-times"></i>
@@ -89,13 +89,17 @@
 							</div>
 							<!-- End of .section-title -->
 							<div class="subscription-form-wrapper">
-								<form action="#" class="subscription-form">
+								<form method="post" class="subscription-form" id="subscriber-form">
+									@csrf
+									
 									<div class="form-group form-group-small m-b-xs-20">
 										<label for="subscription-email">Enter Email Address</label>
-										<input type="text" name="subscription-email" id="subscription-email">
+										<input type="text" name="subscriber_email" id="subscription-email">
+										<span id="sub_error" style="color:red"></span>
+										<span id="sub_success" style="color:green"></span>
 									</div>
 									<div class="m-b-xs-0">
-										<button class="btn btn-primary btn-small">SUBSCRIBE</button>
+										<input id="add_sub" type="submit" value="Subscribe" class="btn btn-primary btn-small">
 									</div>
 								</form>
 								<!-- End of .subscription-form -->
@@ -159,7 +163,7 @@
 									</address>
 									<!-- End of address -->
 									<div class="contact-social-share m-t-xs-30">
-										<div class="axil-social-title h5">Follow Us</div>
+										 <div class="axil-social-title h5">Follow Us</div>
 										<ul class="social-share social-share__with-bg">
 											<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
 											<li><a href="#"><i class="fab fa-twitter"></i></a></li>

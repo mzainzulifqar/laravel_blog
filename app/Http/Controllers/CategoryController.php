@@ -191,8 +191,8 @@ class CategoryController extends Controller
            {
             $status = 0;
            }
-
-           $attr = ['image' => $image, 'status' => $status,'name' => request()->name];
+           
+           $attr = ['image' => $image, 'status' => $status,'name' => request()->name,'slug' => str_slug(request()->name)];
 
            return $attr;
     }

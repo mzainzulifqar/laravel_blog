@@ -21,7 +21,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card-box">
-                                    <h2>Category</h2>
+                                    <h2 style="display: inline-block;">Category</h2>
+                                     <a href="{{route('category.create')}}" style="display:inline-block" class="btn btn-danger float-right" title="">Add New</a>
                                     <div class="responsive-table-plugin" style="padding-bottom: 15px;">
                                  
                                         
@@ -33,6 +34,7 @@
                                                         <th>ID</th>
                                                         <th data-priority="1">Name</th>
                                                         <th>Image</th>
+                                                        <th>Post Count</th>
                                                         <th>Status</th>
                                                         <th>Edit</th>
                                                         <th>Delete</th>
@@ -50,6 +52,7 @@
                                                         <th>{{$cc->id}}</th>
                                                         <td>{{uppercase($cc->name)}}</td>
                                                         <td><img src="{{asset('public/images/category/'.$cc->image)}}" alt="" width="60" height="60"></td>
+                                                        <td><h2><span class="badge badge-warning">{{$cc->category_post->count()}}</span></h2</td>
                                                         <td><span class="badge badge-{{check_class($cc->status)}}">{{uppercase(check_status($cc->status))}}</span></td>
                                                        
                                                         <td><a href="{{url('category/'.$cc->id.'/edit')}}" class="btn btn-bordred-primary waves-effect  width-md waves-light">Edit</a></td>
@@ -68,7 +71,7 @@
                                                       @endforeach
 
                                                        @else
-                                                      <tr ><td class="text-center" colspan="6"><h2>No Data Found</h2></td></tr>
+                                                      <tr ><td class="text-center" colspan="7"><h2>No Data Found</h2></td></tr>
                                                        @endif
                                                     </tbody>
                                                 </table>

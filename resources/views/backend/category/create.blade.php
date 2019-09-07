@@ -21,7 +21,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box">
-                                    <h2 class="mt-0 mb-3">Category</h2>
+                                    <h2 class="mt-0 mb-3" style="display: inline-block;">Category</h2>
+                                     <a href="{{route('category.index')}}" style="display:inline-block" class="btn btn-info float-right" title="">Back</a>
                                 
                                     <form role="form" action=@if(isset($category) )
                                     "{{route('category.update',$category->id)}}" @else() "{{route('category.store')}}" @endif method="post" enctype="multipart/form-data" >
@@ -125,23 +126,7 @@
 
 
 
-        <script>
-            $(document).ready(function(){
-                $('.dropify').dropify({
-    tpl: {
-        wrap:            '<div class="dropify-wrapper"></div>',
-        loader:          '<div class="dropify-loader"></div>',
-        message:         '<div class="dropify-message"><span class="file-icon" /> <p></p></div>',
-        preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message"></p></div></div></div>',
-        filename:        '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
-        clearButton:     '<button type="button" class="dropify-clear"></button>',
-        errorLine:       '<p class="dropify-error"></p>',
-        errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
-    }
-});
-            });
-
-        </script>
+     
             @endpush
                
 

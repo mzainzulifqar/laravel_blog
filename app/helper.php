@@ -64,4 +64,44 @@ function check_status($check)
 	return $status;
 }
 
+function post_status($check)
+{
+	$status = '';
+	$class = '';
+
+	if($check == 'active')
+	{
+		$status = 'active';
+		$class = 'success';
+	}
+	else if($check == 'pending')
+	{
+		$status = 'pending';
+		$class = 'info';
+	}
+	else if($check == 'disabled')
+	{
+		$status = 'disabled';
+		$class = 'danger';
+	}
+
+	return ['status' => $status,'class'=>$class];
+}
+
+function post_approved($check)
+{
+	if($check == 1)
+	{
+		$status = 'Approved';
+		$class = 'success';
+	}
+	else
+	{
+		$status = 'Pending';
+		$class = 'danger';
+	}
+
+	return ['status' => $status,'class' => $class];
+}
+
 

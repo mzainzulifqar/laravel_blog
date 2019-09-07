@@ -1523,6 +1523,42 @@
 	{{-- <script src="{{asset('public/frontend/assets/js/plugins.js')}}"></script> --}}
 	<!-- Custom Script -->
 	<script src="{{asset('public/frontend/assets/js/main.js')}}"></script>
+
+
+	<script>
+		
+		$(document).ready(function(){
+
+              $('#add_sub').on('click',function(event){
+              	 event.preventDefault();
+              	var email = $('#subscription-email').val();
+              
+
+
+                  $.ajax({
+                         url:"{{route('subscriber.store')}}",
+                         method:"POST",
+                         data:{email: email, _token: "{{ csrf_token() }}"},
+                         dataType:'json',
+                         success:function(response)
+                         {
+                         	if(response.error)
+                         	{
+	                         	$('#sub_error').text(response.error);
+	                         	
+                         	}
+                         	else{
+                         		$('#sub_error').text('');
+                         		$('#sub_success').text(response.success);
+                         		$('#subscribe-popup').css('display','none');
+                         	}
+                         }
+
+
+                  });
+              });
+		});
+	</script>
 	
 		@endpush
 

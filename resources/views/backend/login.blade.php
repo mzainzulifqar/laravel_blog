@@ -52,7 +52,7 @@
                                     @csrf
                                     <div class="form-group mb-3">
                                         <label for="emailaddress">Email address</label>
-                                        <input class="form-control @error('email') is-invalid @enderror()" type="email" name="email" id="emailaddress" required="" value="{{old('email')}}"placeholder="Enter your email">
+                                        <input class="form-control @error('email') is-invalid @enderror()" type="text" name="email" id="emailaddress" required="" value="{{old('email')}}"placeholder="Enter your email">
                                          @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -73,8 +73,11 @@
 
                                     <div class="form-group mb-3">
                                         <div class="custom-control custom-checkbox">
-                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="custom-control-label" for="checkbox-signin">Remember me</label>
+                                          <input class="form-check-input" value="" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
                                         </div>
                                     </div>
 
@@ -110,13 +113,19 @@
         </div>
         <!-- end page -->
     
-
+       
         <!-- Vendor js -->
         <script src="{{asset('public/theme/assets/js/vendor.min.js')}}"></script>
 
         <!-- App js -->
         <script src="{{asset('public/theme/assets/js/app.min.js')}}"></script>
-        
+         <script>
+            $(document).ready(function(){
+                $('#remember').click(function(){
+                    $(this).val(1);
+                });
+            });
+        </script>
     </body>
 
 <!-- Mirrored from coderthemes.com/adminto/layouts/light/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Aug 2019 18:33:44 GMT -->
