@@ -11,14 +11,17 @@ class PostNotification extends Notification
 {
     use Queueable;
 
+
+    public $post;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -41,8 +44,12 @@ class PostNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.'.$notifiable->name)
-                    ->action('Notification Action', url('/'))
+                    ->greeting('Howdy Admin')
+                    ->subject('New Post need Approval')
+                    ->line('New Post By '. $this->post->user->name . ' need to approve')
+                    ->line('To approve post click View Buttom')
+                    ->line('Post title = '.$this->post->title)
+                    ->action('View Post', url(route('post.show',$this->post->id)))
                     ->line('Thank you for using our application!');
     }
 

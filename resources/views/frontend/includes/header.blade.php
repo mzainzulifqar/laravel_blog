@@ -63,7 +63,7 @@
 	<!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-	<div class="subscribe-popup" id="subscribe-popup">
+	{{-- <div class="subscribe-popup" id="subscribe-popup">
 		<div class="subscribe-popup-inner">
 			<div class="close-popup">
 				<i class="fal fa-times"></i>
@@ -115,7 +115,7 @@
 			<!-- End of .row -->
 		</div>
 		<!-- End of .subscribe-popup-inner -->
-	</div>
+	</div> --}}
 	<!-- End of .subscribe-popup -->
 	<!-- Main contents
 	================================================ -->

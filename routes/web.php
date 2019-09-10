@@ -3,6 +3,7 @@
 // use Illuminate\Auth\Middleware\Auth;
 use App\Notifications\PostNotification;
 use App\User;
+use App\Subscriber;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -23,9 +24,12 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::get('/testing',function(){
-	$user = User::find(1);
-	$user->notify(new PostNotification);
-	dd('cool');
+	// dd(Auth::user()->isSuperAdmin());
+	// $user = User::find(1);
+	// $user->notify(new PostNotification);
+	// dd('cool');
+	$subscriber  = Subscriber::first();
+	dd();
 	
 });
 
@@ -62,8 +66,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::resource('category','CategoryController');
 	Route::resource('permission','PermissionController');
 	Route::resource('post','PostController');
-	// Route::resource('subscriber','SubscriberController');
+	
 });
+Route::resource('xml','XMLController');
 // admin routes end here
 
 

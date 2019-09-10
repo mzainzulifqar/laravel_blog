@@ -130,7 +130,15 @@
                                        @can('approve-post', User::class)
                                            
                                       
-                                        <a href="{{route('approve.post',$post->id)}}" style="display:inline-block" class="btn btn-success btn-block float-right" >Approve This Post</a>
+                                        <a href="{{route('approve.post',$post->id)}}" style="display:inline-block" class="btn btn-success btn-block float-right" ><i class="ti-check"></i> Approve This Post</a>
+
+                                         @endcan  
+                                       @else
+
+                                       @can('approve-post', User::class)
+                                           
+                                      
+                                        <a href="{{route('approve.post',$post->id)}}" style="display:inline-block" class="btn btn-danger btn-block float-right" ><i class="ti-check"></i> Un-Approve This Post</a>
 
                                          @endcan  
                                        @endif

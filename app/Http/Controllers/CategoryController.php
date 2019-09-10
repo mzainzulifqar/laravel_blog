@@ -27,7 +27,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+
+    {  
         $categories = Category::latest()->paginate(10);
         return view('backend.category.index',compact('categories'));
     }
@@ -38,8 +39,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('backend.category.create');
+    {   
+        $categories = Category::where('status','1')->get();
+        return view('backend.category.create',compact('categories'));
     }
 
     /**
@@ -51,12 +53,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
      
-     
-        $result = Category::create($this->validateRequest());
+     // dd($request->all());
+        $category = Category::create($this->validateRequest());
 
 
-        if($result)
+        if($category)
         {
+            $category->category_parent()->attach($request->category);
             return back()->with('success','Category Added Successfully');
         }
     }
@@ -80,7 +83,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('backend.category.create',compact('category'));
+    
+     $categories = Category::where('status','1')->where('id','!=',$category->id)->get();
+        return view('backend.category.create',compact('category','categories'));
     }
 
     /**
@@ -91,8 +96,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
-    {
-        // dd($request->file());    
+    {   
 
         $request->validate([
             'name' => $request->name == $category->name ? '':'required|unique:categories,name',
@@ -127,6 +131,8 @@ class CategoryController extends Controller
 
         if($result)
         {
+            $category->category_parent()->detach();
+            $category->category_parent()->attach($request->category);
             return back()->with('success','Category updated Successfully');
         }
 
@@ -143,9 +149,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $this->deleteImage($category->image);
+        $category->category_parent()->detach();
         
         if($category->delete())
         {
+
             return back()->with('success','Category Deleted Successfully');
         }
     }
@@ -166,8 +174,15 @@ class CategoryController extends Controller
     public function deleteImage($name)
     {
         $file_path = public_path().'/images/category/'.$name;
-       
-        unlink($file_path);
+         
+         if(file_exists($file_path))
+         {
+            unlink($file_path);
+         }
+         else
+         {
+            return [];
+         }
     }
 
     public function validateRequest($category = null)
@@ -176,6 +191,7 @@ class CategoryController extends Controller
            $attr  = request()->validate([
             'name' => 'required|unique:categories,name',
             'image' =>  'required|mimes:jpeg,png,gif',
+            'category' => 'required',
         ]);
 
            $image = $this->uploadImage(request()->image);

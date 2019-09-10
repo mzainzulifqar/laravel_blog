@@ -18,7 +18,10 @@ class HomeController extends Controller
      */
     public function index()
     {   
-       $category = Category::where('status','=',1)->get();
+     $category  = Category::whereHas('greatgrandfather',function($query)
+        {
+                $query->where('parent_id',0);
+        })->where('status','1')->get();
         return view('frontend.index',compact('category'));
     }
 }

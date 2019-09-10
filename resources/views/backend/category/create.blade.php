@@ -5,6 +5,8 @@
         <!-- dropify -->
         <link href="{{asset('public/theme/assets/libs/dropify/dropify.min.css')}}" rel="stylesheet" type="text/css" />
 
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
         <!-- App css -->
         <link href="{{asset('public/theme/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/theme/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -51,13 +53,25 @@
                                                <input type="hidden" name="hidden_image" value="{{@$category->image}}">
                                         </div>
 
-                                      {{--    <div class="form-group">
+                                        @php
+                                          $ids = isset($category) && $category->category_parent->count() > 0 ? array_pluck($category->category_parent,'id') : [];
+                                          
+                                        @endphp
+                                         <div class="form-group">
                                             <label for="">Parent Category</label>
-                                        <select name="" id="input" class="form-control" required="required">
-                                            <option value="">zain</option>
-                                            <option value="">zainnn</option>
+
+                                        <select  id="category" name="category[]" multiple class="form-control category" required="required">
+                                          <option value="0">Top Level</option>
+                                         
+                                            
+                                            @foreach ($categories as $category)
+                                            
+                                            <option value="{{$category->id}}" {{isset($ids) && in_array($category->id,$ids) ? 'selected' : ''}}>{{$category->name}}</option>
+                                            
+                                            @endforeach
+
                                         </select>
-                                    </div> --}}
+                                    </div>
                                     
                                            
                                         <div class="card" style="margin-top: 20px;">
@@ -67,7 +81,7 @@
                                                 <strong class="text-danger">{{$message}}</strong>
                                             </span>
                                             @enderror()
-                                            {{-- {{dd($category)}} --}}
+                                            
                                         <div class="card-body">
 
                                             <div class="row">
@@ -114,7 +128,8 @@
             <!-- dropify js -->
         <script src="{{asset('public/theme/assets/libs/dropify/dropify.min.js')}}"></script>
 
-        
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>        
+
 
         <!-- form-upload init -->
         <script src="{{asset('public/theme/assets/js/pages/form-fileupload.init.js')}}"></script>
@@ -124,10 +139,19 @@
         <!-- App js -->
         <script src="{{asset('public/theme/assets/js/app.min.js')}}"></script>
 
+        <script>
+              $(document).ready(function() {
+             $('#category').select2({
+                placeholder: "Select a Parent Category",
+             
+             });
+         });
+        </script>
 
 
      
             @endpush
+
                
 
                        

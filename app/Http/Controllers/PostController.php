@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Notifications\PostApproved;
+use App\Notifications\PostNotification;
+use App\Notifications\SubscriberNotification;
 use App\Post;
+use App\Subscriber;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -51,12 +58,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-       $result = Post::create($this->validateRequest());
-       $result->tags()->attach($request->tags);
-       $result->category()->attach($request->category);
-       if($result) 
+       $post = Post::create($this->validateRequest());
+       $post->tags()->attach($request->tags);
+       $post->category()->attach($request->category);
+       if($post) 
        {
-            return back()->with('success','Post has been created');
+                $admin = User::find(1);  //sending notification to admin
+                $admin->notify(new PostNotification($post));
+                $subcribers = Subscriber::all();
+                foreach($subcribers as $subscriber)
+                {
+                
+                   Notification::route('mail',$subcriber->email)->notify(new SubscriberNotification($post));
+            }
+                return back()->with('success','Post has been created');
        }
     }
 
@@ -177,6 +192,7 @@ class PostController extends Controller
 
 
     public function uploadImage(Request $request){
+
         $CKEditor = $request->input('CKEditor');
     $funcNum  = $request->input('CKEditorFuncNum');
     $message  = $url = '';
@@ -244,11 +260,23 @@ class PostController extends Controller
 
     public function approved(Request $request , Post $post)
     {
-        $post->is_approved = '1';
-        if($post->update())
+        if(Gate::allows('isSuperAdmin'))
         {
-            return back()->with('success','Post has been approved Successfully');
-        } 
+           if($post->is_approved == '1')
+           {
+            $post->is_approved = '0';
+            $post->save();
+            return back()->with('success','Posts has been Un-Approved Successfully');
+           }
+           else
+           {
+                $post->is_approved = '1';
+                $post->save();
+                $post->user->notify(new PostApproved($post));
+                return back()->with('success','Post has been approved Successfully');
+           
+            } 
+        }
 
     }
     

@@ -6,7 +6,8 @@
         <!-- dropify -->
         <link href="{{asset('public/theme/assets/libs/dropify/dropify.min.css')}}" rel="stylesheet" type="text/css" />
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
+         <link href="{{asset('public/theme/select2/dist/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <link href="{{asset('public/theme/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -231,8 +232,8 @@
             <!-- dropify js -->
         <script src="{{asset('public/theme/assets/libs/dropify/dropify.min.js')}}"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>        
-
+      
+            <script src="{{asset("public/theme/select2/dist/js/select2.min.js")}}"></script>
         <!-- form-upload init -->
         <script src="{{asset('public/theme/assets/js/pages/form-fileupload.init.js')}}"></script>
 

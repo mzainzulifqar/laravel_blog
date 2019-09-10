@@ -12,10 +12,21 @@ class Category extends Model
     protected $fillable = ['name','status','image','slug'];
 
 
-    // public function category_parent(){
+    public function category_parent(){
 
-    // 	return $this->belongsToMany(Category::class,'category_parents','category_id','parent_id');
-    // }
+    	return $this->belongsToMany(Category::class,'category_parents','category_id','parent_id');
+    }
+
+     public function category_child(){
+
+    	return $this->belongsToMany(Category::class,'category_parents','parent_id','category_id');
+    }
+
+   public function greatgrandfather()
+      {
+         return $this->belongsToMany(Category::class,'category_parents');
+      }
+
 
     public function category_post(){
 

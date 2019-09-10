@@ -21,58 +21,31 @@
 									</ul>
 									<!-- End of .submenu -->
 								</li>
-								<li class="has-dropdown">
-									<a href="#">Posts</a>
-									<ul class="submenu">
-										<li class="has-dropdown">
-											<a href="#">Post Layout</a>
-											<ul class="submenu">
-												<li><a href="post-layout-one.html">Post Layout 1</a></li>
-												<li><a href="post-layout-two.html">Post Layout 2</a></li>
-												<li><a href="post-layout-three.html">Post Layout 3</a></li>
-												<li><a href="post-layout-four.html">Post Layout 4</a></li>
-												<li><a href="post-layout-five.html">Post Layout 5</a></li>
-											</ul>
-											<!-- End of .submenu -->
-										</li>
-										<li class="has-dropdown">
-											<a href="#">Post Format</a>
-											<ul class="submenu">
-												<li><a href="post-format-standard.html">Post Format Standard</a>
-												</li>
-												<li><a href="post-format-video.html">Post Format Video</a></li>
-												<li><a href="post-format-audio.html">Post Format Audio</a></li>
-												<li><a href="post-format-gallery.html">Post Format Gallery</a></li>
-												<li><a href="post-format-quote.html">Post Format Quote</a></li>
-												<li><a href="post-format-text-only.html">Post Format Text Only</a>
-												</li>
-											</ul>
-											<!-- End of .submenu -->
-										</li>
-									</ul>
-									<!-- End of .submenu -->
-								</li>
+								
 
 								{{-- category dynamic --}}
 								@if (isset($category))
 									@foreach ($category as $cat)
-								     <li><a href="{{route('articles',['category' => $cat->slug])}}">{{$cat->name}}</a></li>
+							  <li class="has-dropdown">
+									<a href="javascript:">{{$cat->name}}</a>
+									@if($cat->category_child->count() > 0)
+										<ul class="submenu">
+										@foreach ($cat->category_child as $child)
+										
+								
+										<li><a href="{{route('articles',['category' => $child->slug])}}">{{$child->name}}</a></li>
+										
+
+										@endforeach
+										</ul>
+									@endif
+									<!-- End of .submenu -->
+								</li>
 								    @endforeach	
 								@endif
 
 								{{-- category dynamic end here --}}
-								<li class="has-dropdown">
-									<a href="#">Pages</a>
-									<ul class="submenu">
-										<li><a href="author.html">Author</a></li>
-										<li><a href="error-404.html">404 Error</a></li>
-										<li><a href="under-construction.html">Coming Soon</a></li>
-										<li><a href="about-us.html">About Us</a></li>
-										<li><a href="team.html">Team</a></li>
-										<li><a href="contact.html">Contact Us</a></li>
-									</ul>
-									<!-- End of .submenu -->
-								</li>
+							
 							</ul>
 							<!-- End of .main-navigation -->
 						</div>
