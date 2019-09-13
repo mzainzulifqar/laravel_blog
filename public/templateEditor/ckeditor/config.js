@@ -6,6 +6,23 @@
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 
+	 config.allowedContent = {
+        script: true,
+        $1: {
+            // This will set the default set of elements
+            elements: CKEDITOR.dtd,
+            attributes: true,
+            styles: true,
+            classes: true
+        }
+    };
+
+	config.extraAllowedContent = '*[id](*)';
+	// protect <anytag class="preserve"></anytag>
+CKEDITOR.config.protectedSource.push( /<([\S]+)[^>]*class="preserve"[^>]*>.*<\/\1>/g );
+// protect <anytag class="preserve" /><
+CKEDITOR.config.protectedSource.push( /<[^>]+class="preserve"[^>\/]*\/>/g );
+	// config.ignoreEmptyParagraph = false;
 
 	// For complete reference see:
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
@@ -36,8 +53,11 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
+	// config.allowedContent = true;
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 };
+
+
 

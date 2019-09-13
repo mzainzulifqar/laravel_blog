@@ -30,6 +30,7 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="axil-latest-post">
+								
 
 							@if(isset($top_post))
 							<div class="media post-block m-b-xs-20">

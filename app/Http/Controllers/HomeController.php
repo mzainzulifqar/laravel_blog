@@ -255,7 +255,7 @@ class HomeController extends Controller
                 $query->where('parent_id',0);
         })->where('status','1')->get();
 
-       $data =  Post::where('title','LIKE','%'.$slug.'%')->orWhere('slug','LIKE','%'.$slug.'%')->paginate(10);
+       $data =  Post::where('title','LIKE','%'.$slug.'%')->orWhere('slug','LIKE','%'.$slug.'%')->orderBy('views')->paginate(10);
       
 
         $tags = Tag::inRandomOrder()->take(8)->get();

@@ -63,6 +63,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<main class="axil-content">
+							
 							<div class="add-container m-b-xs-60">
 								<a href="#"><img src="{{asset('public/frontend/assets/images/clientbanner/clientbanner.jpg')}}" alt="add one"
 										class="img-fluid"></a>
@@ -88,12 +89,15 @@
 										</ul>
 									</div>
 								</div>
+
 							</div>
 							<!-- End of .post-block -->
 							@endforeach
 							@else
 							<h2 class="text-center">Waiting for posts....</h2>
 							@endif
+
+
 						</main>
 						<!-- End of .axil-content -->
 						{{$data->appends(request()->input())->links()}}

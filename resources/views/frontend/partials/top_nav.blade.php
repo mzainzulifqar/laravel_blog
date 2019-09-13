@@ -3,7 +3,7 @@
 				<div class="container">
 					<div class="navbar-inner">
 						<div class="brand-logo-container">
-							<a href="index.html">
+							<a href="{{url('/')}}">
 								<img src="{{asset('public/frontend/assets/images/logo-black.svg')}}" alt="" class="brand-logo">
 							</a>
 						</div>
@@ -11,7 +11,7 @@
 						<div class="main-nav-wrapper">
 							<ul class="main-navigation list-inline" id="main-menu">
 								<li class="has-dropdown">
-									<a href="#">Home</a>
+									<a href="{{url('/')}}">Home</a>
 									<ul class="submenu">
 										<li><a href="index.html">Home One</a></li>
 										<li><a href="home-2.html">Home Two</a></li>

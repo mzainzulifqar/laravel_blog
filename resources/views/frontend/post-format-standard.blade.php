@@ -125,7 +125,9 @@
 									<li><a href="#" class="btn bg-color-facebook"><i class="fab fa-facebook-f"></i>
 											1K+</a>
 									</li>
-									<li><a href="#" class="btn bg-color-twitter"><i class="fab fa-twitter"></i>1000+</a>
+
+									<li><a class="btn bg-color-twitter" data-size="large" href="https://twitter.com/intent/tweet?text=View this post {{route('get_post',$post->slug)}}
+													"><i class="fab fa-twitter"></i></a>
 									</li>
 									<li><a href="#" class="btn bg-color-linkedin"><i
 												class="fab fa-linkedin-in"></i>1M+</a>
@@ -160,7 +162,10 @@
 												far I’ve come, and so thankful for where I come from.</p>
 											<ul class="social-share social-share__with-bg">
 												<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-												<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+												
+												
+												<li><a href="https://twitter.com/intent/tweet?text=https://www.youtube.com/watch?v=bUXdEU6kH6A&list=PLvc_4FFg5org9DcqGS1i6Bz7bgt1apkn1&index=3
+													"><i class="fab fa-twitter"></i></a></li>
 												<li><a href="#"><i class="fab fa-behance"></i></a></li>
 												<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
 											</ul>
