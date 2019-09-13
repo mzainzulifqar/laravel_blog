@@ -184,6 +184,40 @@
 
     	@stack('scripts')
 
+    	<script>
+    		$(document).ready(function(){
+
+              $('#add_sub2').on('click',function(event){
+              	 event.preventDefault();
+              	var email = $('#subscription-email2').val();
+              
+
+
+                  $.ajax({
+                         url:"{{route('subscriber.store')}}",
+                         method:"POST",
+                         data:{email: email, _token: "{{ csrf_token() }}"},
+                         dataType:'json',
+                         success:function(response)
+                         {
+                         	if(response.error)
+                         	{
+	                         	$('#sub_error2').text(response.error);
+	                         	
+                         	}
+                         	else{
+                         		$('#sub_error2').text('');
+                         		$('#sub_success2').text(response.success);
+                         		$('#subscribe-popup').css('display','none');
+                         	}
+                         }
+
+
+                  });
+              });
+		});
+    	</script>
+
 	
 </body>
 </html>

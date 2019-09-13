@@ -18,26 +18,33 @@ use Illuminate\Support\Facades\Auth;
 */
 	
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('');
 
 
 Auth::routes();
 
 Route::get('/testing',function(){
-	// dd(Auth::user()->isSuperAdmin());
-	// $user = User::find(1);
-	// $user->notify(new PostNotification);
-	// dd('cool');
-	$subscriber  = Subscriber::first();
-	dd();
+	dd(file_exists(public_path().'/images/posts/1568212688.jpg'));
 	
+});
+Route::get('/response',function()
+{
+	dd('hi');
 });
 
 
 Route::post('upload_image','PostController@uploadImage')->name('upload');
 
 // frontend routes
-
+	Route::get('article/{slug}','HomeController@get_post')->name('get_post');
+	Route::get('auther/{name}','HomeController@fetch_auther_details')->name('fetch_auther');
+	Route::get('/about_us','HomeController@about_us')->name('about_us');
+	Route::get('/contact','HomeController@contact_us')->name('contact_us');
+	Route::post('/contact_us/form','HomeController@contact_us_form')->name('contact_us_form');
+	Route::get('/article','HomeController@get_category_related_posts')->name('get_category_related_posts');
+	Route::get('/posts','HomeController@get_tags_related_posts')->name('get_tags_related_posts');
+	Route::post('/post/comment','HomeController@post_comment')->name('post_comment');
+	Route::get('/search_result','HomeController@search')->name('search_post');
 
 
 // frontend routes end here
@@ -49,6 +56,12 @@ Route::post('upload_image','PostController@uploadImage')->name('upload');
 Route::resource('subscriber','SubscriberController');
 
 // subscriber route end here
+
+// route with out middleware
+
+	
+
+// end here
 Route::group(['middleware' => 'auth'],function(){
 
 
@@ -60,6 +73,14 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/approve_post/{post}','PostController@approved')->name('approve.post');
 
 	// custom permission route end here
+
+	// custom route for post
+		Route::get('post/pending_posts','PostController@pending_posts')->name('post.pending');
+		Route::get('post/archived_posts','PostController@archived_posts')->name('post.archived');
+
+
+	// custom route for post end here
+
 	Route::resource('user','UserController');
 	Route::resource('role','RoleController');
 	Route::resource('tag','TagController');
@@ -68,7 +89,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::resource('post','PostController');
 	
 });
-Route::resource('xml','XMLController');
+
 // admin routes end here
 
 

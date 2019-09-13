@@ -34,7 +34,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(10);
+        if(Auth::user()->isSuperAdmin())
+        {
+         $posts = Post::latest()->paginate(10);
+        }
+        else 
+        {
+          $posts = Post::where('user_id',Auth::id())->paginate(10);   
+        }
         return view('backend.post.index',compact('posts'));
     }
 
@@ -69,7 +76,7 @@ class PostController extends Controller
                 foreach($subcribers as $subscriber)
                 {
                 
-                   Notification::route('mail',$subcriber->email)->notify(new SubscriberNotification($post));
+                   Notification::route('mail',$subscriber->email)->notify(new SubscriberNotification($post));
             }
                 return back()->with('success','Post has been created');
        }
@@ -125,6 +132,7 @@ class PostController extends Controller
             'category' => 'required',
             'tags' => 'required',
             'body' => 'required',
+            'featured_description' => 'required|max:100',
 
 
 
@@ -153,6 +161,7 @@ class PostController extends Controller
          $post->images = $name ?? $post->images;
          $post->user_id = Auth::id();
          $post->status = $status;
+         $post->featured_description = $request->featured_description;
          $result = $post->update();
 
          $post->tags()->detach();
@@ -220,10 +229,12 @@ class PostController extends Controller
             'category' => 'required',
             'tags' => 'required',
             'body' => 'required',
+            'featured_description' => 'required|max:100',
 
 
 
          ]);
+        // dd($attr);
 
          if(request()->hasFile('image'))
          {
@@ -255,7 +266,15 @@ class PostController extends Controller
     public function deleteImage($name)
     {
         $path  = public_path().'/images/posts/'.$name;
-        unlink($path);
+        if(file_exists($path))
+        {
+             unlink($path);     
+        }
+        else
+        {
+            return '';
+        }
+       
     }
 
     public function approved(Request $request , Post $post)
@@ -278,6 +297,27 @@ class PostController extends Controller
             } 
         }
 
+    }
+
+
+    public function pending_posts(){
+
+        if(Gate::allows('isSuperAdmin'))
+        {
+            $posts  = Post::where('is_approved','0')->paginate(10);
+            return view('backend.post.index',compact('posts'));
+        }
+        else
+        {
+            return back()->with('success','Whoops Not so clever');
+        }
+    }
+
+    public function archived_posts(){
+        
+            $posts  = Post::where('status','pending')->paginate(10);
+            return view('backend.post.index',compact('posts'));
+       
     }
     
 }

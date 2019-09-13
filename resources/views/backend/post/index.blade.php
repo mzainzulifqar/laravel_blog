@@ -57,10 +57,10 @@
                                                      
                                                     <tr>
                                                         <th>{{$post->id}}</th>
-                                                        <td>{{str_limit(uppercase($post->title),10)}}</td>
+                                                        <td>{{str_limit(uppercase($post->title),5)}}</td>
                                                         <td>{{uppercase($post->user->name)}}</td>
-                                                        <td>{{str_limit($post->slug,20)}}</td>
-                                                        <td>{!!str_limit($post->body,25)!!}...</td>
+                                                        <td>{{str_limit($post->slug,15)}}</td>
+                                                        <td>{!!str_limit($post->body,15)!!}...</td>
                                                         <td class="text-center">{{$post->views}}</td>
                                                         <td><span class="badge badge-{{post_status($post->status)['class']}}">{{post_status($post->status)["status"]}}</span></td>
                                                         <td><span class="badge badge-{{post_approved($post->is_approved)['class']}}">{{post_approved($post->is_approved)["status"]}}</span></td>
@@ -68,7 +68,7 @@
                                                         <td>
 
                                                             <a href="{{url('post/'.$post->id.'')}}" style="margin-top:-16px;display: inline-flex;" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-eye"></i></a>
-                                                            @if ($post->user_id == Auth::user()->id)
+                                                            @if ($post->user_id == Auth::user()->id || Auth::user()->isSuperAdmin())
                                                                 
                                                             
                                                             <a href="{{url('post/'.$post->id.'/edit')}}" style="margin-top:-16px;display: inline-flex;" class="btn btn-icon waves-effect waves-light btn-warning"><i class="fa fa-wrench"></i></a>

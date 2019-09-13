@@ -24,16 +24,18 @@
 								
 
 								{{-- category dynamic --}}
+								
 								@if (isset($category))
 									@foreach ($category as $cat)
+
 							  <li class="has-dropdown">
-									<a href="javascript:">{{$cat->name}}</a>
+									<a @if($cat->category_child->count() < 1) href="{{route('get_category_related_posts',['category' => $cat->slug])}}" @else href="javascript:" @endif>{{$cat->name}}</a>
 									@if($cat->category_child->count() > 0)
 										<ul class="submenu">
 										@foreach ($cat->category_child as $child)
 										
 								
-										<li><a href="{{route('articles',['category' => $child->slug])}}">{{$child->name}}</a></li>
+										<li><a href="{{route('get_category_related_posts',['category' => $child->slug])}}">{{$child->name}}</a></li>
 										
 
 										@endforeach
@@ -51,9 +53,9 @@
 						</div>
 						<!-- End of .main-nav-wrapper -->
 						<div class="navbar-extra-features ml-auto">
-							<form action="#" class="navbar-search">
+							<form action="{{route('search_post')}}" method="get" class="navbar-search">
 								<div class="search-field">
-									<input type="text" class="navbar-search-field" placeholder="Search Here...">
+									<input type="text" class="navbar-search-field"  name="query" placeholder="Search Here...">
 									<button class="navbar-search-btn" type="button"><i
 											class="fal fa-search"></i></button>
 								</div>

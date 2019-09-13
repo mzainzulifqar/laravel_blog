@@ -88,6 +88,13 @@
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{route('post.index')}}">View</a></li>
                                     <li><a href="{{route('post.create')}}">Create</a></li>
+                                    
+                                    <li><a href="{{route('post.archived')}}">Archived Posts</a></li>
+
+                                    @if(Auth::user()->isSuperAdmin())
+                                    
+                                    <li><a href="{{route('post.pending')}}">Pending Posts</a></li>
+                                    @endif
                                     {{-- <li><a href="ui-draggable-cards.html">Draggable Cards</a></ --}}
                                 </ul>
                             </li>

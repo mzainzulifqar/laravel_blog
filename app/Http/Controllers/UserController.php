@@ -59,6 +59,7 @@ class UserController extends Controller
                 'email'=>'required|unique:users,email',
                 'password' => 'required',
                 'roles' => 'required',
+                'description' => 'required,'
             ],
             $messages
 
@@ -84,6 +85,7 @@ class UserController extends Controller
             'name' => $request->get('name'),
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'description' => $request->description,
             'thumbnail' => isset($name) ? $name : 'dummy.png',
         ]);
 
@@ -161,6 +163,7 @@ class UserController extends Controller
        // inserting user
        $user->name = $request->name;
        $user->email = $request->email ?? $user->email;
+       $user->description = $request->description;
        $user->password = (isset($request->password)) ? bcrypt($request->password) : $user->password;
        $user->thumbnail = isset($name) ? $name : $user->thumbnail;
      

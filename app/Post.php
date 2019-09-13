@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title','images','slug','body','user_id','status','created_at'];
+    protected $fillable = ['title','images','slug','body','user_id','status','created_at','featured_description'];
 
 
     public function tags(){
@@ -23,5 +23,9 @@ class Post extends Model
     public function user()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
     }
 }

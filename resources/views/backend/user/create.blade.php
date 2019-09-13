@@ -72,6 +72,23 @@
                                            
 
                                         </div>
+
+                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Description</label>
+                                          <textarea name="description" id="inputDescription" class="form-control" rows="3" required="required">{{@$user->description}}</textarea>
+                                            
+
+                                            @error('description')
+                                            <span>
+                                                <strong class="text-danger">{{$message}}</strong>
+                                            </span>
+                                            @enderror()
+
+
+
+                                           
+
+                                        </div>
                                           <div class="form-group">
                                             <label for="exampleInputEmail1">Profile pic</label>
                                             <input type="file" class="form-control" name="image" >

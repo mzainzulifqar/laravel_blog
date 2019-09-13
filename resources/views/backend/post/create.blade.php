@@ -62,11 +62,30 @@
                                             @enderror()
                                         </div>
 
+                                          <div class="form-group">
+                                            <label for="exampleInputEmail1">Featured Content</label>
+                                          
+
+                                               
+                                            <textarea name="featured_description" id="featured_description" maxlength='100' class="form-control" rows="3" >{{@$post->featured_description}}</textarea>
+                                            <span class="font-13 text-muted" style="display:inline;">Max 100 words</span>
+                                                <div class="text-right pull-right" style="float:right;">
+                                                   <span id="display_count" class="font-13 text-muted">
+                                                   <span id="words_left" ></span>/100</span>
+                                               </div>
+
+                                            @error('featured_description')
+                                            <span>
+                                                <strong class="text-danger">{{$message}}</strong>
+                                            </span>
+                                            @enderror()
+                                        </div>
+
 
                                    
                                         <div class="form-group">
                                             <label for="">Featured Image</label>
-                                               <input type="file" name="image" class="dropify" data-max-width="1000" data-max-file-size="1M"  multiple  />
+                                               <input type="file" name="image" class="dropify" data-max-width="2000" data-max-file-size="1M"  multiple  />
 
                                                   @error('image')
                                             <span>
@@ -100,16 +119,19 @@
                                     <div class="card-body">
                                     
                                           @php
-                                            $tagg = isset($post) && $post->tags->count() > 0 ? array_pluck($post->tags,'id') : '';
-                                            // dd($tagg);
-                                            $categories = isset($post) && $post->category->count() > 0 ? array_pluck($post->category,'id') : '';
+                                          $arr = [];
+
+                                            $tagg = isset($post) && $post->tags->count() > 0 ? array_pluck($post->tags,'id') : $arr;
+                                                                                        // dd($tagg);
+                                            $categories = isset($post) && $post->category->count() > 0 ? array_pluck($post->category,'id') : $arr;
 
                                         @endphp
                                       
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Category</label>
                                           <select class="js-example-basic-multiple" name="category[]" multiple="multiple">
-                                            @if (isset($category))
+                                            
+                                            @if (isset($category) && $category->count() > 0)
                                               @foreach ($category as $cat)
                                                   <option value="{{$cat->id}}" {{isset($post) && in_array($cat->id,$categories) ? "selected" : ''}}>{{$cat->name}}</option>
                                               @endforeach
@@ -265,6 +287,20 @@
                 placeholder: "Select a Tag",
                 allowClear: true
              });
+
+
+        $("#featured_description").on('keydown', function(e) {
+            var words  = $(this).val().length;
+            // = $.trim(this.value).length ? this.value.match(/\S+/g).length : 0;
+            
+            if (words <= 100) {
+                // $('#display_count').text(words);
+                $('#words_left').text(words)
+            }else{
+                if (e.which !== 8) e.preventDefault();
+            }
+});
+
             });
         </script>
 
