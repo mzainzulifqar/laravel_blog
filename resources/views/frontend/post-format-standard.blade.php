@@ -277,7 +277,7 @@
 						<!-- End of main -->
 					</div>
 					<!--End of .col-auto  -->
-					@include('frontend.partials.aside');
+					@include('frontend.partials.aside')
 				</div>
 				<!-- End of .row -->
 			</div>
