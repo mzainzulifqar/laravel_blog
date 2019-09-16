@@ -38,7 +38,7 @@
 									<a href="post-format-standard.html"><img src="{{asset('public/images/posts/'.$top_post->images)}}"
 											alt="latest post"></a>
 									<div class="post-cat-group m-b-xs-10">
-										<a href="business.html"
+										<a href="{{ route('get_category_related_posts',$top_post->category->pluck('name')->first()) }}"
 											class="post-cat cat-btn bg-color-blue-one">{{$top_post->category->pluck('name')->first()}}</a>
 									</div>
 								</figure>
@@ -80,7 +80,7 @@
 											class=" m-r-xs-30" src="{{asset('public/images/posts/'.$post->images)}}" alt=""></a>
 									<div class="media-body">
 										<div class="post-cat-group m-b-xs-10">
-											<a href="business.html"
+											<a href="{{ route('get_category_related_posts',$post->category->pluck('name')->first()) }}"
 												class="post-cat cat-btn bg-color-{{get_random_color()}}">{{$post->category->pluck('name')->first()}}</a>
 										</div>
 
@@ -132,7 +132,7 @@
 							<div class="media post-block position-absolute">
 								<div class="media-body media-body__big">
 									<div class="post-cat-group m-b-xs-10">
-										<a href="business.html" class="post-cat cat-btn bg-color-purple-one">{{$top_stories->first()->category->pluck('name')->first()}}</a>
+										<a href="{{ route('get_category_related_posts',$top_stories->first()->category->pluck('name')->first()) }}" class="post-cat cat-btn bg-color-purple-one">{{$top_stories->first()->category->pluck('name')->first()}}</a>
 									</div>
 									<div class="axil-media-bottom">
 											
@@ -169,7 +169,7 @@
 							<div class="media post-block position-absolute">
 								<div class="media-body">
 									<div class="post-cat-group m-b-xs-10">
-										<a href="business.html"
+										<a href="{{ route('get_category_related_posts',$top_story->category->pluck('name')->first()) }}"
 											class="post-cat cat-btn btn-mid bg-color-purple-two">{{$top_story->category->pluck('name')->first()}}</a>
 									</div>
 									<div class="axil-media-bottom">
@@ -217,7 +217,7 @@
 									src="{{asset('public/images/posts/'.$td->images)}}" alt=""></a>
 							<div class="media-body">
 								<div class="post-cat-group m-b-xs-10">
-									<a href="business.html" class="post-cat cat-btn bg-color-{{get_random_color()}}">{{$td->category->pluck('name')->first()}}</a>
+									<a href="{{ route('get_category_related_posts',$td->category->pluck('name')->first()) }}" class="post-cat cat-btn bg-color-{{get_random_color()}}">{{$td->category->pluck('name')->first()}}</a>
 								</div>
 								<h3 class="axil-post-title hover-line hover-line"><a
 										href="{{route('get_post',$td->slug)}}">{{$td->title}}</a></h3>
@@ -398,7 +398,7 @@
 										src="{{asset('public/images/posts/'.$rd_post->images)}}" alt=""></a>
 								<div class="media-body">
 									<div class="post-cat-group m-b-xs-10">
-										<a href="business.html" class="post-cat cat-btn bg-color-{{get_random_color()}}">{{$rd_post->category->pluck('name')->first()}}</a>
+										<a href="{{ route('get_category_related_posts',$rd_post->category->pluck('name')->first()) }}" class="post-cat cat-btn bg-color-{{get_random_color()}}">{{$rd_post->category->pluck('name')->first()}}</a>
 									</div>
 									<h3 class="axil-post-title hover-line hover-line"><a
 											href="{{route('get_post',$rd_post->slug)}}">{{$rd_post->title}}</a></h3>

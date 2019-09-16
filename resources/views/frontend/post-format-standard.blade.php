@@ -102,7 +102,7 @@
 									@if (isset($post) && $post->tags->count() > 0)
 										@foreach($post->tags as $tags)
 										
-									<li><a href="#" class="btn bg-color-{{get_random_color()}}">
+									<li><a href="{{ route('get_tags_related_posts',$tags->name) }}" class="btn bg-color-{{get_random_color()}}">
 											{{uppercase($tags->name)}}</a>
 									</li>
 

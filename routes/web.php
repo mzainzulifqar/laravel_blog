@@ -41,8 +41,8 @@ Route::post('upload_image','PostController@uploadImage')->name('upload');
 	Route::get('/about_us','HomeController@about_us')->name('about_us');
 	Route::get('/contact','HomeController@contact_us')->name('contact_us');
 	Route::post('/contact_us/form','HomeController@contact_us_form')->name('contact_us_form');
-	Route::get('/article','HomeController@get_category_related_posts')->name('get_category_related_posts');
-	Route::get('/posts','HomeController@get_tags_related_posts')->name('get_tags_related_posts');
+	Route::get('/article/category/{category}','HomeController@get_category_related_posts')->name('get_category_related_posts');
+	Route::get('/article/tag/{tag}','HomeController@get_tags_related_posts')->name('get_tags_related_posts');
 	Route::post('/post/comment','HomeController@post_comment')->name('post_comment');
 	Route::get('/search_result','HomeController@search')->name('search_post');
 

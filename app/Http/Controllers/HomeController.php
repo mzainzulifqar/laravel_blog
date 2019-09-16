@@ -180,6 +180,8 @@ class HomeController extends Controller
                 $query->where('parent_id',0);
         })->where('status','1')->get();
 
+         $tags = Tag::inRandomOrder()->take(8)->get();
+
         $category_all = Category::inRandomOrder()->take(4)->get();
          $posts = Post::where('is_approved','1')->latest()->take(4)->get();
          //this is also showing in aside recent stories tag
@@ -193,7 +195,7 @@ class HomeController extends Controller
 
        
 
-        return view('frontend.category',compact('data','category','category_all','posts','top_stories','slug'));
+        return view('frontend.category',compact('tags','data','category','category_all','posts','top_stories','slug'));
     }
 
 
