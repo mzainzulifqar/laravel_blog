@@ -3,7 +3,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                               2016 - 2019 &copy; Adminto theme by <a href="#">Coderthemes</a> 
+                               2016 - 2019 &copy; Developed by <a href="http://zainzulifqar.tk">Zain Zulifqar</a> 
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-right footer-links d-none d-sm-block">
@@ -167,6 +167,4 @@
         
         
     </body>
-
-<!-- Mirrored from coderthemes.com/adminto/layouts/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Aug 2019 18:32:22 GMT -->
 </html>

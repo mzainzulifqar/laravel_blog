@@ -23,7 +23,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box">
-                                    <h2 class="mt-0 mb-3">User</h2>
+                                    <h2 class="mt-0 mb-3" style="display: inline-block;">User</h2>
+                                     <a href="{{route('tag.index')}}" style="display:inline-block" class="btn btn-info float-right" title="">Back</a>
                                    
                                     <form role="form" action=@if(isset($user) )
                                     "{{route('user.update',$user->id)}}" @else() "{{route('user.store')}}" @endif method="post" enctype='multipart/form-data'>
@@ -61,6 +62,23 @@
                                             
 
                                             @error('password')
+                                            <span>
+                                                <strong class="text-danger">{{$message}}</strong>
+                                            </span>
+                                            @enderror()
+
+
+
+                                           
+
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Description</label>
+                                          <textarea name="description" id="inputDescription" class="form-control" rows="3" required="required">{{@$user->description}}</textarea>
+                                            
+
+                                            @error('description')
                                             <span>
                                                 <strong class="text-danger">{{$message}}</strong>
                                             </span>

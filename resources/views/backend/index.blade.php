@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="header-title mt-0 mb-4">Total Revenue</h4>
+                                    <h4 class="header-title mt-0 mb-4">Total Views</h4>
 
                                     <div class="widget-chart-1">
                                         <div class="widget-chart-box-1 float-left" dir="ltr">
@@ -51,8 +51,8 @@
                                         </div>
 
                                         <div class="widget-detail-1 text-right">
-                                            <h2 class="font-weight-normal pt-2 mb-1"> 256 </h2>
-                                            <p class="text-muted mb-1">Revenue today</p>
+                                            <h2 class="font-weight-normal pt-2 mb-1"> {{$total_views}} </h2>
+                                            <p class="text-muted mb-1">Total Views</p>
                                         </div>
                                     </div>
                                 </div>
@@ -77,18 +77,18 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="header-title mt-0 mb-3">Sales Analytics</h4>
+                                    <h4 class="header-title mt-0 mb-3">Total Categories</h4>
 
                                     <div class="widget-box-2">
                                         <div class="widget-detail-2 text-right">
                                             <span class="badge badge-success badge-pill float-left mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
-                                            <h2 class="font-weight-normal mb-1"> 8451 </h2>
-                                            <p class="text-muted mb-3">Revenue today</p>
+                                            <h2 class="font-weight-normal mb-1"> {{$total_category}} </h2>
+                                            <p class="text-muted mb-3">Total Category</p>
                                         </div>
                                         <div class="progress progress-bar-alt-success progress-sm">
                                             <div class="progress-bar bg-success" role="progressbar"
                                                     aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                                    style="width: 77%;">
+                                                    style="width:77%;">
                                                 <span class="sr-only">77% Complete</span>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="header-title mt-0 mb-4">Statistics</h4>
+                                    <h4 class="header-title mt-0 mb-4">Total Users</h4>
 
                                     <div class="widget-chart-1">
                                         <div class="widget-chart-box-1 float-left" dir="ltr">
@@ -125,8 +125,8 @@
                                                     data-thickness=".15"/>
                                         </div>
                                         <div class="widget-detail-1 text-right">
-                                            <h2 class="font-weight-normal pt-2 mb-1"> 4569 </h2>
-                                            <p class="text-muted mb-1">Revenue today</p>
+                                            <h2 class="font-weight-normal pt-2 mb-1"> {{$total_users}} </h2>
+                                            <p class="text-muted mb-1">Total Users</p>
                                         </div>
                                     </div>
                                 </div>
@@ -151,12 +151,12 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="header-title mt-0 mb-3">Daily Sales</h4>
+                                    <h4 class="header-title mt-0 mb-3">Total Tags</h4>
 
                                     <div class="widget-box-2">
                                         <div class="widget-detail-2 text-right">
                                             <span class="badge badge-pink badge-pill float-left mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
-                                            <h2 class="font-weight-normal mb-1"> 158 </h2>
+                                            <h2 class="font-weight-normal mb-1"> {{$total_tags}} </h2>
                                             <p class="text-muted mb-3">Revenue today</p>
                                         </div>
                                         <div class="progress progress-bar-alt-pink progress-sm">
@@ -509,6 +509,19 @@
         <!-- App js -->
         <script src="{{asset('public/theme/assets/js/app.min.js')}}"></script>
             @endpush
+
+            <script>
+   var chart = Morris.Bar({
+        element : 'morris-bar-example',
+        data : [{
+            "x" : null,
+            "y" : null
+        }],
+        xkey : 'x',
+        ykeys : ['y'],
+        labels : ['Added']
+    });
+            </script>
                
 
        @endsection()

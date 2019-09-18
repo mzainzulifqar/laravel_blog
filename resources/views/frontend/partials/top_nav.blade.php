@@ -3,7 +3,7 @@
 				<div class="container">
 					<div class="navbar-inner">
 						<div class="brand-logo-container">
-							<a href="index.html">
+							<a href="{{url('/')}}">
 								<img src="{{asset('public/frontend/assets/images/logo-black.svg')}}" alt="" class="brand-logo">
 							</a>
 						</div>
@@ -11,7 +11,7 @@
 						<div class="main-nav-wrapper">
 							<ul class="main-navigation list-inline" id="main-menu">
 								<li class="has-dropdown">
-									<a href="#">Home</a>
+									<a href="{{url('/')}}">Home</a>
 									<ul class="submenu">
 										<li><a href="index.html">Home One</a></li>
 										<li><a href="home-2.html">Home Two</a></li>
@@ -21,61 +21,41 @@
 									</ul>
 									<!-- End of .submenu -->
 								</li>
-								<li class="has-dropdown">
-									<a href="#">Posts</a>
-									<ul class="submenu">
-										<li class="has-dropdown">
-											<a href="#">Post Layout</a>
-											<ul class="submenu">
-												<li><a href="post-layout-one.html">Post Layout 1</a></li>
-												<li><a href="post-layout-two.html">Post Layout 2</a></li>
-												<li><a href="post-layout-three.html">Post Layout 3</a></li>
-												<li><a href="post-layout-four.html">Post Layout 4</a></li>
-												<li><a href="post-layout-five.html">Post Layout 5</a></li>
-											</ul>
-											<!-- End of .submenu -->
-										</li>
-										<li class="has-dropdown">
-											<a href="#">Post Format</a>
-											<ul class="submenu">
-												<li><a href="post-format-standard.html">Post Format Standard</a>
-												</li>
-												<li><a href="post-format-video.html">Post Format Video</a></li>
-												<li><a href="post-format-audio.html">Post Format Audio</a></li>
-												<li><a href="post-format-gallery.html">Post Format Gallery</a></li>
-												<li><a href="post-format-quote.html">Post Format Quote</a></li>
-												<li><a href="post-format-text-only.html">Post Format Text Only</a>
-												</li>
-											</ul>
-											<!-- End of .submenu -->
-										</li>
-									</ul>
+								
+
+								{{-- category dynamic --}}
+								
+								@if (isset($category))
+									@foreach ($category as $cat)
+
+							  <li class="has-dropdown">
+									<a @if($cat->category_child->count() < 1) href="{{route('get_category_related_posts',['category' => $cat->slug])}}" @else href="javascript:" @endif>{{$cat->name}}</a>
+									@if($cat->category_child->count() > 0)
+										<ul class="submenu">
+										@foreach ($cat->category_child as $child)
+										
+								
+										<li><a href="{{route('get_category_related_posts',['category' => $child->slug])}}">{{$child->name}}</a></li>
+										
+
+										@endforeach
+										</ul>
+									@endif
 									<!-- End of .submenu -->
 								</li>
-								<li><a href="business.html">Business</a></li>
-								<li><a href="lifestyle.html">Lifestyle</a></li>
-								<li><a href="technology.html">Technology</a></li>
-								<li><a href="sports.html">Sports</a></li>
-								<li class="has-dropdown">
-									<a href="#">Pages</a>
-									<ul class="submenu">
-										<li><a href="author.html">Author</a></li>
-										<li><a href="error-404.html">404 Error</a></li>
-										<li><a href="under-construction.html">Coming Soon</a></li>
-										<li><a href="about-us.html">About Us</a></li>
-										<li><a href="team.html">Team</a></li>
-										<li><a href="contact.html">Contact Us</a></li>
-									</ul>
-									<!-- End of .submenu -->
-								</li>
+								    @endforeach	
+								@endif
+
+								{{-- category dynamic end here --}}
+							
 							</ul>
 							<!-- End of .main-navigation -->
 						</div>
 						<!-- End of .main-nav-wrapper -->
 						<div class="navbar-extra-features ml-auto">
-							<form action="#" class="navbar-search">
+							<form action="{{route('search_post')}}" method="get" class="navbar-search">
 								<div class="search-field">
-									<input type="text" class="navbar-search-field" placeholder="Search Here...">
+									<input type="text" class="navbar-search-field"  name="query" placeholder="Search Here...">
 									<button class="navbar-search-btn" type="button"><i
 											class="fal fa-search"></i></button>
 								</div>

@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Role;
+use App\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','thumbnail'
+        'name', 'email', 'password','thumbnail','description'
     ];
 
     /**
@@ -72,6 +73,28 @@ class User extends Authenticatable
                 return false;
             }
     }   
+
+    public function post()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function post_latest()
+    {
+        return $this->hasMany('App\Post')->inRandomOrder()->take(8);
+    }
+
+      public function posts()
+    {
+        return $this->hasManyThrough(
+            'App\Comment',
+            'App\Post',
+            'user_id', // Foreign key on users table...
+            'post_id', // Foreign key on posts table...
+            'id', // Local key on countries table...
+            'id' // Local key on users table...
+        );
+    }
 
 
     

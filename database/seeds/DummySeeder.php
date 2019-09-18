@@ -13,5 +13,7 @@ class DummySeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
+        $this->call(Factory::class);
+        // $this->call(PostFactory::class,50);
     }
 }

@@ -97,7 +97,7 @@
 
                                                         @endif
 
-                                                      @if(isset($result))
+                                                      @if(isset($result) && $result->count() > 0)
                                                        @foreach ($result as $p)
                                                             {{-- expr --}}
                                                      
@@ -118,9 +118,7 @@
                                                        
                                                     </tr>
                                                       @endforeach
-                                                      @else
-                                                      <tr ><td class="text-center" colspan="6"><h2>No Data Found</h2></td></tr>
-                                                       @endif
+                                                                                                           @endif
                                                     </tbody>
                                                 </table>
                                             </div>

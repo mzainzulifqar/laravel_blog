@@ -63,7 +63,7 @@
 	<!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-	<div class="subscribe-popup">
+	{{-- <div class="subscribe-popup" id="subscribe-popup">
 		<div class="subscribe-popup-inner">
 			<div class="close-popup">
 				<i class="fal fa-times"></i>
@@ -89,13 +89,17 @@
 							</div>
 							<!-- End of .section-title -->
 							<div class="subscription-form-wrapper">
-								<form action="#" class="subscription-form">
+								<form method="post" class="subscription-form" id="subscriber-form">
+									@csrf
+									
 									<div class="form-group form-group-small m-b-xs-20">
 										<label for="subscription-email">Enter Email Address</label>
-										<input type="text" name="subscription-email" id="subscription-email">
+										<input type="text" name="subscriber_email" id="subscription-email">
+										<span id="sub_error" style="color:red"></span>
+										<span id="sub_success" style="color:green"></span>
 									</div>
 									<div class="m-b-xs-0">
-										<button class="btn btn-primary btn-small">SUBSCRIBE</button>
+										<input id="add_sub" type="submit" value="Subscribe" class="btn btn-primary btn-small">
 									</div>
 								</form>
 								<!-- End of .subscription-form -->
@@ -111,16 +115,16 @@
 			<!-- End of .row -->
 		</div>
 		<!-- End of .subscribe-popup-inner -->
-	</div>
+	</div> --}}
 	<!-- End of .subscribe-popup -->
 	<!-- Main contents
 	================================================ -->
 	<div class="main-content">
 		<div class="side-nav">
 			<div class="side-nav-inner nicescroll-container">
-				<form action="#" class="side-nav-search-form">
+				<form action="{{route('search_post')}}" method="get" class="side-nav-search-form">
 					<div class="form-group search-field">
-						<input type="text" class="search-field" name="search-field" placeholder="Search...">
+						<input type="text" class="search-field" name="query" placeholder="Search...">
 						<button class="side-nav-search-btn"><i class="fas fa-search"></i></button>
 					</div>
 					<!-- End of .side-nav-search-form -->
@@ -130,10 +134,14 @@
 					<div class="row ">
 						<div class="col-lg-6">
 							<ul class="main-navigation side-navigation list-inline flex-column">
-								<li><a href="business.html">Business</a></li>
-								<li><a href="lifestyle.html">Lifestyle</a></li>
-								<li><a href="technology.html">Technology</a></li>
-								<li><a href="sports.html">Sports</a></li>
+								@if($category->count())
+								@foreach ($category as $cat)
+									
+								
+								<li><a href="{{route('get_category_related_posts',['category' => $cat->slug])}}">{{$cat->name}}</a></li>
+								@endforeach
+								@endif
+
 							</ul>
 							<!-- End of .main-navigation -->
 						</div>
@@ -159,7 +167,7 @@
 									</address>
 									<!-- End of address -->
 									<div class="contact-social-share m-t-xs-30">
-										<div class="axil-social-title h5">Follow Us</div>
+										 <div class="axil-social-title h5">Follow Us</div>
 										<ul class="social-share social-share__with-bg">
 											<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
 											<li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -193,8 +201,8 @@
 							<ul class="header-top-nav list-inline justify-content-center justify-content-md-start">
 								<li class="current-date">25 July, 2019</li>
 								<li><a href="#">Advertisement</a></li>
-								<li><a href="about-us.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="{{route('about_us')}}">About</a></li>
+								<li><a href="{{route('contact_us')}}">Contact</a></li>
 							</ul>
 							<!-- End of .header-top-nav -->
 						</div>

@@ -21,7 +21,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box">
-                                    <h2 class="mt-0 mb-3">Permission</h2>
+                                    <h2 class="mt-0 mb-3" style="display: inline-block;">Permission</h2>
+                                     <a href="{{route('permission.index')}}" style="display:inline-block" class="btn btn-info float-right" title="">Back</a>
                                
                                     <form role="form" action=@if(isset($permission))
                                     "{{route('permission.update',$permission->id)}}" @else() "{{route('permission.store')}}" @endif method="post">
