@@ -78,7 +78,11 @@
 										src="{{asset('public/images/posts/'.$dd->images)}}" alt=""></a>
 								<div class="media-body">
 									<div class="post-cat-group m-b-xs-10">
+<<<<<<< HEAD
+										<a href="business.html" class="post-cat cat-btn bg-color-blue-one">{{$dd->category->pluck('name')->first()}}</a>
+=======
 										<a href="{{ route('get_category_related_posts',$dd->category->pluck('name')->first()) }}" class="post-cat cat-btn bg-color-blue-one">{{$dd->category->pluck('name')->first()}}</a>
+>>>>>>> development
 									</div>
 									<h3 class="axil-post-title hover-line hover-line"><a
 											href="{{route('get_post',$dd->slug)}}">{{$dd->title}}</a></h3>

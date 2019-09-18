@@ -132,7 +132,12 @@
 							<div class="media post-block position-absolute">
 								<div class="media-body media-body__big">
 									<div class="post-cat-group m-b-xs-10">
+<<<<<<< HEAD
+										<a href="{{ route('get_category_related_posts',
+										$top_stories->first()->category->pluck('name')->first()) }}" class="post-cat cat-btn bg-color-purple-one">{{$top_stories->first()->category->pluck('name')->first()}}</a>
+=======
 										<a href="{{ route('get_category_related_posts',$top_stories->first()->category->pluck('name')->first()) }}" class="post-cat cat-btn bg-color-purple-one">{{$top_stories->first()->category->pluck('name')->first()}}</a>
+>>>>>>> development
 									</div>
 									<div class="axil-media-bottom">
 											
@@ -557,7 +562,11 @@
 	<!-- IF ie -->
 	{{-- <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script> --}}
 	<!-- Plugins -->
+<<<<<<< HEAD
+	
+=======
 	{{-- <script src="{{asset('public/frontend/assets/js/plugins.js')}}"></script> --}}
+>>>>>>> development
 	<!-- Custom Script -->
 	<script src="{{asset('public/frontend/assets/js/main.js')}}"></script>
 

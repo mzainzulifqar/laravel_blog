@@ -112,12 +112,21 @@
             @push('scripts')
                 <!-- Vendor js -->
         <script src="{{asset('public/theme/assets/js/vendor.min.js')}}"></script>
+<<<<<<< HEAD
+         <!-- App js -->
+        <script src="{{asset('public/theme/assets/js/app.min.js')}}"></script>
+=======
+>>>>>>> development
 
         <!-- knob plugin -->
         <script src="{{asset('public/theme/assets/libs/jquery-knob/jquery.knob.min.js')}}"></script>
 
+<<<<<<< HEAD
+       
+=======
         <!-- App js -->
         <script src="{{asset('public/theme/assets/js/app.min.js')}}"></script>
+>>>>>>> development
             @endpush
                
 

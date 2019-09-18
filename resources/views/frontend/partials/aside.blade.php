@@ -247,7 +247,11 @@
 										@if (isset($tags) && $tags->count() > 0)
 											@foreach($tags->all() as $tag)
 
+<<<<<<< HEAD
+											<li><a href="{{route('get_tags_related_posts', $tag->name)}}">{{$tag->name}}</a></li>
+=======
 											<li><a href="{{route('get_tags_related_posts',$tag->name)}}">{{$tag->name}}</a></li>
+>>>>>>> development
 
 											@endforeach()
 										@endif
