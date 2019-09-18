@@ -558,7 +558,7 @@
 	<!-- IF ie -->
 	{{-- <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script> --}}
 	<!-- Plugins -->
-	{{-- <script src="{{asset('public/frontend/assets/js/plugins.js')}}"></script> --}}
+	
 	<!-- Custom Script -->
 	<script src="{{asset('public/frontend/assets/js/main.js')}}"></script>
 
