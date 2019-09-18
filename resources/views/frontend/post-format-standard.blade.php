@@ -46,7 +46,11 @@
 					<div class="col-lg-6">
 						<div class="post-title-wrapper">
 							<div class="btn-group">
+<<<<<<< HEAD
 								<a href="{{ route('get_category_related_posts',$post->category->pluck('name')->first()) }}" class="cat-btn bg-color-{{get_random_color()}}">{{uppercase($post->category->pluck('name')->first())}}</a>
+=======
+								<a href="#" class="cat-btn bg-color-{{get_random_color()}}">{{uppercase($post->category->pluck('name')->first())}}</a>
+>>>>>>> development
 							</div>
 
 							<h2 class="m-t-xs-20 m-b-xs-0 axil-post-title hover-line">{{$post->title}}
@@ -102,7 +106,11 @@
 									@if (isset($post) && $post->tags->count() > 0)
 										@foreach($post->tags as $tags)
 										
+<<<<<<< HEAD
 									<li><a href="#" class="btn bg-color-{{get_random_color()}}">
+=======
+									<li><a href="{{ route('get_tags_related_posts',$tags->name) }}" class="btn bg-color-{{get_random_color()}}">
+>>>>>>> development
 											{{uppercase($tags->name)}}</a>
 									</li>
 

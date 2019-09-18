@@ -36,7 +36,11 @@ Route::get('/response',function()
 Route::post('upload_image','PostController@uploadImage')->name('upload');
 
 // frontend routes
+<<<<<<< HEAD
 	Route::get('posts/{slug}','HomeController@get_post')->name('get_post');
+=======
+	Route::get('article/{slug}','HomeController@get_post')->name('get_post');
+>>>>>>> development
 	Route::get('auther/{name}','HomeController@fetch_auther_details')->name('fetch_auther');
 	Route::get('/about_us','HomeController@about_us')->name('about_us');
 	Route::get('/contact','HomeController@contact_us')->name('contact_us');
@@ -44,7 +48,11 @@ Route::post('upload_image','PostController@uploadImage')->name('upload');
 	Route::get('/article/category/{category}','HomeController@get_category_related_posts')->name('get_category_related_posts');
 	Route::get('/article/tag/{tag}','HomeController@get_tags_related_posts')->name('get_tags_related_posts');
 	Route::post('/post/comment','HomeController@post_comment')->name('post_comment');
+<<<<<<< HEAD
 	Route::get('search/result','HomeController@search')->name('search_post');
+=======
+	Route::get('/search_result','HomeController@search')->name('search_post');
+>>>>>>> development
 
 
 // frontend routes end here
